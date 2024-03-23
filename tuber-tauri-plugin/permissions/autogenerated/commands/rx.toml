@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-rx"
+description = "Enables the rx command without any pre-configured scope."
+commands.allow = ["rx"]
+
+[[permission]]
+identifier = "deny-rx"
+description = "Denies the rx command without any pre-configured scope."
+commands.deny = ["rx"]

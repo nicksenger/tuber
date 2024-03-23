@@ -1,0 +1,97 @@
+[package]
+name = "tuber"
+description = "bytes in bytes out"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+bincode = ["dep:bincode", "dep:serde"]
+bitcode = ["dep:bitcode"]
+core = ["tokio/io-util"]
+js = ["dep:js-sys", "dep:wasm-bindgen", "dep:wasm-bindgen-futures", "dep:wasm-streams", "dep:web-sys"]
+macros = ["dep:tuber-macros"]
+runtime = []
+tauri = ["tuber-macros/tauri"]
+tokio = ["core", "tokio/full", "runtime"]
+wasmer-js = ["dep:wasmer", "dep:wasmer-js", "dep:wasmer-wasix", "runtime"]
+web = ["core", "js", "runtime"]
+worker = ["tuber-macros/worker", "web"]
+
+[dependencies]
+bincode = { version = "1.3", optional = true}
+bitcode = { version = "0.6", optional = true }
+bytes = { workspace = true }
+educe = "0.5"
+futures = { version = "0.3" }
+futures-core = "0.3"
+js-sys = { version = "0.3", optional = true }
+once_cell = "1"
+pin-project-lite = "0.2"
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde-error = "0.1"
+thiserror = "1.0"
+tokio = { version = "1", features = ["sync"], default_features = false }
+tokio-serde = { workspace = true, features = ["bincode"] }
+tokio-util = { version = "0.7", features = ["codec", "io"], default_features = false }
+tracing = "0.1"
+tuber-macros = { path = "./tuber-macros", optional = true }
+wasm-bindgen = { version = "0.2", optional = true }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+wasm-streams = { version = "0.4", optional = true }
+wasmer = { path = "../wasmer/lib/api", default-features = false, optional = true, features = [
+    "js",
+    "js-default",
+    "tracing",
+    "wasm-types-polyfill",
+    "enable-serde"
+]}
+wasmer-js = { path = "../wasmer-js", optional = true }
+wasmer-wasix = { path = "../wasmer/lib/wasix", default-features = false, optional = true, features = [
+    "js",
+    "js-default"
+]}
+web-sys = { version = "0.3", optional = true, features = [
+    "Blob",
+    "BlobPropertyBag",
+    "console",
+    "FileSystemDirectoryHandle",
+    "MessageChannel",
+    "MessageEvent",
+    "MessagePort",
+    "Navigator",
+    "ReadableStream",
+    "StorageManager",
+    "Url",
+    "Window",
+    "Worker",
+    "WorkerGlobalScope",
+    "WorkerNavigator",
+    "WorkerOptions",
+    "WorkerType"
+]}
+
+[patch.crates-io]
+virtual-net = { path = "../wasmer/lib/virtual-net" }
+virtual-fs = { path = "../wasmer/lib/virtual-fs" }
+
+[workspace]
+members = [
+    "tuber-macros"
+]
+exclude = [
+    "examples",
+    "tuber-tauri-plugin",
+    "test"
+]
+
+[workspace.dependencies]
+bytes = "1.5"
+tokio-serde = { version = "0.8" }
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Nick Senger <dev@nsenger.com>"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/nicksenger/tuber"

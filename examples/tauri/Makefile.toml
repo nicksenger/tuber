@@ -1,0 +1,14 @@
+[tasks.run-native]
+description = "Builds the tauri native code"
+script = [
+    "cd ./native && cargo tauri dev"
+]
+
+[tasks.serve-web]
+description = "Builds the web app"
+script = [
+    "cd ./web && trunk serve --release"
+]
+
+[tasks.run]
+run_task = { name = ["serve-web", "run-native"], parallel = true }

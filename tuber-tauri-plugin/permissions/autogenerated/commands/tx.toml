@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-tx"
+description = "Enables the tx command without any pre-configured scope."
+commands.allow = ["tx"]
+
+[[permission]]
+identifier = "deny-tx"
+description = "Denies the tx command without any pre-configured scope."
+commands.deny = ["tx"]

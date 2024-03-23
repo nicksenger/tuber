@@ -1,0 +1,23 @@
+[package]
+name = "tuber_wasmer"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+bitcode = "0.6"
+futures = "0.3"
+js-sys = "0.3"
+tracing = { version = "0.1", default-features = false, features = ["log"] }
+tracing-wasm = "0.2"
+tuber = { path = "../..", features = ["bitcode", "macros", "wasmer-js", "worker"] }
+wasm-timer = "0.2"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+wasmer-js = { path = "../../../wasmer-js" }
+
+[patch.crates-io]
+virtual-net = { path = "../../../wasmer/lib/virtual-net" }
+virtual-fs = { path = "../../../wasmer/lib/virtual-fs" }

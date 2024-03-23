@@ -1,0 +1,21 @@
+[package]
+name = "tauri-plugin-tuber"
+version = "0.1.0"
+authors = [ "Nick Senger" ]
+description = ""
+edition = "2021"
+rust-version = "1.70"
+links = "tauri-plugin-tuber"
+
+[dependencies]
+futures = "0.3"
+serde = "1.0"
+tauri = { version = "2.0.0-beta" }
+thiserror = "1.0"
+tokio = { version = "1.36", features = ["full"] }
+tokio-util = { version = "0.7", features = ["codec", "io"] }
+tracing = "0.1"
+tuber = { path = "..", default-features = false, features = ["core", "js", "tokio"] }
+
+[build-dependencies]
+tauri-plugin = { version = "2.0.0-beta", features = ["build"] }

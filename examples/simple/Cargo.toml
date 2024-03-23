@@ -1,0 +1,19 @@
+[package]
+name = "tuber_simple"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+futures = "0.3"
+js-sys = "0.3"
+parking_lot = { version = "0.11", features = ["wasm-bindgen"] }
+serde = { version = "1.0", features = ["derive"] }
+tracing = { version = "0.1", default-features = false, features = ["log"] }
+tracing-wasm = "0.2"
+tuber = { path = "../..", features = ["bincode", "macros", "worker"] }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+wasm-timer = "0.2"
